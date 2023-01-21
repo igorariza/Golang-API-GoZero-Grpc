@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  artifacts:
+    - image: harbor.ccpadmin.cuemby.io/ccp-development/ccp-service-name
+      docker:
+        dockerfile: Dockerfile
+        buildArgs:
+          GITHUB_TOKEN: '{{.GITHUB_TOKEN}}'
+  local:
+    useDockerCLI: true
+    useBuildkit: false
+profiles:
+  - name: dev
+    deploy:
+      kustomize:
+        paths: 
+        - k8s/dev

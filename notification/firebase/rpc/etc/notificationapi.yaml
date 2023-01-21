@@ -1,0 +1,27 @@
+# config file for rpc interface
+Name: files.rpc
+ListenOn: 127.0.0.1:50051
+#Etcd:
+#  Hosts:
+#  - 127.0.0.1:2379
+#  Key: files.rpc
+
+# mongo database settings
+DB:
+  datasource: "mongodb://localhost:27017/"
+  databaseName: "files"
+  collectionName: "firebase"
+
+# # redis cache
+# Redis:
+#   Host: localhost:6379
+#   Key: "0"
+
+# storage provider settings
+StorageProvider:
+  DigitalOcean:
+    SpaceName: dev
+    SpaceEndpoint: nyc3.digitaloceanspaces.com
+    SpaceKey: KEY
+    SpaceSecret: SecretKey
+    SpaceRegion: us-east-1

@@ -1,0 +1,3 @@
+export PORT=XXXX
+export API_KEY=XXXX
+export SECRET_KEY=XXXX

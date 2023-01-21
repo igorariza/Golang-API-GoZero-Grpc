@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-name-deployment
+  namespace: ccp-services
+spec:
+  selector: { }
+  template:
+    spec:
+      containers:
+        - name: service-name
+          image: ccp-image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - protocol: TCP
+              name: http
+              containerPort: 5050
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "0.1"
+            requests:
+              memory: 256Mi
+              cpu: "0.05"
+          envFrom:
+            - configMapRef:
+                name: configmap-envs
+            - secretRef:
+                name: secret-envs

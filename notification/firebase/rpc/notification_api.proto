@@ -1,0 +1,31 @@
+syntax = "proto3";
+ 
+package notifications.v1alpha1;
+option go_package = "notifications/v1alpha1";
+ 
+// The notification service definition.
+message Notification {
+   string id = 1;
+   string organization_id= 2;
+   string title = 3;
+   string description = 4;
+   string type = 5;
+   string status = 6;
+   string created_at = 7;
+   string updated_at = 8;
+   string deleted_at = 9;
+}
+ 
+// The notification service definition.
+service NotificationAPIService {
+    rpc CreateNotification (CreateNotificationRequest) returns (CreateNotificationResponse) {}
+}
+
+message CreateNotificationRequest {
+   Notification notification = 1;
+}
+
+message CreateNotificationResponse {
+   string msg = 1;
+   string error = 2;
+}
