@@ -12,7 +12,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
-	bylogs "github.com/cuemby/by-go-utils/pkg/bylogger"
 	"github.com/igorariza/golang-api-gozero-grpc/notification/firebase/pkg/file"
 )
 
@@ -95,7 +94,6 @@ func (d *DigitalOceanSpaceProvider) UploadFile(doFile *file.GenericFile) (err er
 
 	_, err = d.client.PutObject(&object)
 	if err != nil {
-		bylogs.LogErr(err)
 		return err
 	}
 
@@ -113,7 +111,6 @@ func (d *DigitalOceanSpaceProvider) GetFile(filename string) (*file.GenericFile,
 
 	url, err := req.Presign(5 * time.Minute)
 	if err != nil {
-		bylogs.LogErr(err)
 		return nil, err
 	}
 
@@ -153,7 +150,6 @@ func (d *DigitalOceanSpaceProvider) ListFiles() ([]*file.GenericFile, error) {
 
 	objects, err := d.client.ListObjects(input)
 	if err != nil {
-		bylogs.LogErr(err)
 		return fileList, err
 	}
 
@@ -191,7 +187,6 @@ func (d *DigitalOceanSpaceProvider) ListFilesPaginated(page int64, size int64) (
 	})
 
 	if err != nil {
-		bylogs.LogErr(err)
 		return nil, err
 	}
 
@@ -206,7 +201,6 @@ func (d *DigitalOceanSpaceProvider) DeleteFile(filename string) (bool, error) {
 
 	resultDelete, err := d.client.DeleteObject(input)
 	if err != nil {
-		bylogs.LogErr(err)
 		return false, err
 	}
 	return aws.BoolValue(resultDelete.DeleteMarker), nil

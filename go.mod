@@ -5,7 +5,6 @@ go 1.18
 require (
 	firebase.google.com/go v3.13.0+incompatible
 	github.com/aws/aws-sdk-go v1.44.178
-	github.com/cuemby/by-go-utils v0.0.3
 	github.com/zeromicro/go-zero v1.4.3
 	go.mongodb.org/mongo-driver v1.11.1
 	google.golang.org/api v0.107.0

@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 
-	bylogs "github.com/cuemby/by-go-utils/pkg/bylogger"
 	"github.com/igorariza/golang-api-gozero-grpc/notification/firebase/pkg/file"
 )
 
@@ -33,7 +32,6 @@ func NewStorageProvider(provider StorageProvider) (IStorageProvider, error) {
 		err := client.Connect()
 		return client, err
 	default:
-		bylogs.LogErr("unsupported storage provider", provider)
 		return nil, errors.New(fmt.Sprint("unsupported storage provider:", provider))
 	}
 }
