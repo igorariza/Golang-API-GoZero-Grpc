@@ -51,11 +51,11 @@ func (l *CreateNotificationLogic) CreateNotification(in *v1alpha1.CreateNotifica
 
 	// configure database URL
 	conf := &firebase.Config{
-		DatabaseURL: "https://ccp-notification-default-rtdb.firebaseio.com/",
+		DatabaseURL: "https://notifications-9bad2-default-rtdb.firebaseio.com/",
 	}
 
 	// fetch service account key
-	opt := option.WithCredentialsFile(os.Getenv("GOOGLE_APPLICATION_CREDENTIALS"))
+	opt := option.WithCredentialsFile(os.Getenv("FIREBASE_SERVICE_ACCOUNT_KEY"))
 	fmt.Println("opt: ", opt)
 
 	app, err := firebase.NewApp(ctx, conf, opt)
@@ -80,6 +80,7 @@ func (l *CreateNotificationLogic) CreateNotification(in *v1alpha1.CreateNotifica
 		"CreatedAt":      createAt,
 		"UpdatedAt":      "",
 		"DeletedAt":      "",
+
 	}); err != nil {
 		log.Fatalln("error in setting value: ", err)
 	}
